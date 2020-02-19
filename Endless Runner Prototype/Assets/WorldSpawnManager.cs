@@ -14,14 +14,15 @@ public class WorldSpawnManager : MonoBehaviour
 
     private float lastSpawnedAtPos = 0;
     private float start = 0;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
         lastSpawnedAtPos = alreadyPresent * groundLength;
         SelectRandomGround();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         float playerX = player.position.x;
@@ -43,9 +44,28 @@ public class WorldSpawnManager : MonoBehaviour
     private void SpawnGround()
     {
         //Debug.Log("Spawn");
-        Object.Instantiate(SelectRandomGround(), new Vector3(lastSpawnedAtPos, 0, 0), REFGround.rotation);
+        var spawn = SelectRandomGround();
+
+        while (spawn == lastSpawned)
+        {
+            spawn = SelectRandomGround();
+        }
+        
+        GameObject spawned = Object.Instantiate(spawn, new Vector3(lastSpawnedAtPos, 0, 0), REFGround.rotation);
+
+        lastSpawned = spawn;
+
+        if (GetComponent<BossManager>().BossMode == true)     //CODE TO MANAGE OBSTACLE SPAWNING DURING BOSS 
+        {
+            spawned.GetComponent<ObstacleSpawner>().Pause();
+        }
+        else
+        {
+            spawned.GetComponent<ObstacleSpawner>().Resume();
+        }
     }
 
+    private GameObject lastSpawned = null;
     private GameObject SelectRandomGround()
     {
         GameObject _ground;

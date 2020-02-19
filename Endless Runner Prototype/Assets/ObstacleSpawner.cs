@@ -6,10 +6,15 @@ public class ObstacleSpawner : MonoBehaviour
 {
     List<Transform> SpawnPointsA = new List<Transform>();
     List<Transform> SpawnPointsB = new List<Transform>();
-    [Space]
+    private bool paused = false;
 
+    [Header("Obstacle Setup")]
     public GameObject[] ObstaclePool;
     public GameObject referenceObject;
+
+    [Header("Coin Setup")]
+    public GameObject coinPrefab;
+    public GameObject coinReferenceObject;
 
     private int toSpawn;
 
@@ -40,13 +45,24 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        toSpawn = Random.Range(0,100);
+        if (!paused)
+        {
+            CallSpawnObstacles();
+            CallSpawnCoin();
+
+        }
+        
+    }   
+
+    void CallSpawnObstacles()
+    {
+        toSpawn = Random.Range(0, 100);
 
         if (toSpawn <= 30)
         {
             Spawn();
         }
-        else if (toSpawn > 30 && toSpawn <=60)
+        else if (toSpawn > 30 && toSpawn <= 60)
         {
             Spawn(2);
         }
@@ -58,7 +74,7 @@ public class ObstacleSpawner : MonoBehaviour
         {
             Spawn(4);
         }
-    }   
+    }
 
     void Spawn(int qty = 1)
     {
@@ -90,7 +106,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    #region SPAWN CODE
+    #region SPAWN OBSTACLE CODE
     List<bool> usedA = new List<bool>();
     List<bool> usedB = new List<bool>();
     private void SpawnAtA()
@@ -100,7 +116,7 @@ public class ObstacleSpawner : MonoBehaviour
         {
             usedA[spawnAt] = true;
             Transform spawnAtPoint = SpawnPointsA[spawnAt];
-            Object.Instantiate(ObstaclePool[Random.Range(0, ObstaclePool.Length - 1)], spawnAtPoint.position, referenceObject.transform.rotation);
+            Object.Instantiate(ObstaclePool[Random.Range(0, ObstaclePool.Length)], spawnAtPoint.position, referenceObject.transform.rotation);
         }
         else
         {
@@ -116,7 +132,7 @@ public class ObstacleSpawner : MonoBehaviour
         {
             usedB[spawnAt] = true;
             Transform spawnAtPoint = SpawnPointsB[spawnAt];
-            Object.Instantiate(ObstaclePool[Random.Range(0, ObstaclePool.Length - 1)], spawnAtPoint.position, referenceObject.transform.rotation);
+            Object.Instantiate(ObstaclePool[Random.Range(0, ObstaclePool.Length)], spawnAtPoint.position, referenceObject.transform.rotation);
         }
         else
         {
@@ -125,4 +141,91 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
     #endregion
+
+    #region SPAWN COIN CODE
+    private void CallSpawnCoin()
+    {
+        int ran = Random.Range(0, 100);
+        if (ran <=50 )
+        {
+            SpawnCoin();
+        }
+        else
+        {
+            SpawnCoin(2);
+        }
+    }
+
+    void SpawnCoin(int qty = 1)
+    {
+        for (int i = 0; i < qty; i++)
+        {
+            int ran = Random.Range(0, 100);
+            if (ran <=50 )
+            {
+                spawnCoinAtA();
+            }
+            else
+            {
+                spawnCoinAtB();
+            }
+        }
+    }
+
+    void spawnCoinAtA()
+    {
+        List<Transform> pointsAvailable = new List<Transform>();
+
+        for (int i = 0; i < usedA.Count; i++)
+        {
+            if (usedA[i] == false)
+            {
+                pointsAvailable.Add(SpawnPointsA[i]);
+            }
+        }
+        if (pointsAvailable.Count == 0)
+        {
+            return;
+        }
+
+        int ran = Random.Range(0, pointsAvailable.Count);
+
+        Object.Instantiate(coinPrefab, pointsAvailable[ran].position, coinPrefab.transform.rotation);
+        usedA[ran] = true;
+
+    }
+
+    void spawnCoinAtB()
+    {
+        List<Transform> pointsAvailable = new List<Transform>();
+
+        for (int i = 0; i < usedB.Count; i++)
+        {
+            if (usedB[i] == false)
+            {
+                pointsAvailable.Add(SpawnPointsB[i]);
+            }
+        }
+        if (pointsAvailable.Count == 0)
+        {
+            return;
+        }
+
+        int ran = Random.Range(0, pointsAvailable.Count);
+
+        Object.Instantiate(coinPrefab, pointsAvailable[ran].position, coinPrefab.transform.rotation);
+        usedB[ran] = true;
+    }
+
+    #endregion
+
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void Resume()
+    {
+        paused = false;
+    }
 }

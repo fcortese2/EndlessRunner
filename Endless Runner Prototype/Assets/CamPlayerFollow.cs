@@ -1,14 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CamPlayerFollow : MonoBehaviour
 {
-    public Transform player;
+    public Transform Player;
+    public Vector3 Offset = new Vector3(0, 3, -5);
+    private float newPosition;
 
-    // Update is called once per frame
-    void LateUpdate()
+    //private void Start()
+    //{
+    //    transform.position = GetNewPosition();
+    //}
+
+    void Update()
     {
-        transform.position = new Vector3(player.position.x - 4.75f, player.position.y + 3.8f, 0);
+        //transform.position = Vector3.Lerp(transform.position, GetNewPosition(), Time.deltaTime);
+        var position = new Vector3(Player.position.x - 4.5f, Player.position.y + 2.4f, transform.position.z);
+        transform.position = Vector3.Lerp(position, new Vector3(transform.position.x , transform.position.y , Player.position.z), 15 * Time.deltaTime);
     }
+
+    //private Vector3 GetNewPosition()
+    //{
+    //    return Player.position + Offset;
+    //}
+
+
 }

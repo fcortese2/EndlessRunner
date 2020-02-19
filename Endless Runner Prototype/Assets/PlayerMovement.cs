@@ -25,14 +25,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-            //rb.AddForce(new Vector3(1, 0, 0) * speed * Time.deltaTime);
-            rb.transform.Translate(new Vector3(1, 0, 0) * speed/5 * Time.deltaTime);
+        //rb.AddForce(new Vector3(1, 0, 0) * speed * Time.deltaTime);
+
+        rb.transform.Translate(new Vector3(1, 0, 0) * speed/5 * Time.deltaTime);
+
+        //rb.AddForce(Vector3.right * speed * Time.deltaTime, ForceMode.Impulse);
+        //rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, 0, 50), 0, 0);
 
         if (jump)
         {
-            jump = false;
-            Debug.Log("Jump");
+            //Debug.Log("Jump");
             rb.AddForce(Vector3.up * jumpStrength * 100 * Time.deltaTime, ForceMode.Impulse);
+            jump = false;
         }
 
         if (moveLeft)
