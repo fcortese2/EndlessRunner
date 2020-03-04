@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - GM
   - Pickup
+  - Boss
+  - ExpRef
   layers:
   - Default
   - TransparentFX
