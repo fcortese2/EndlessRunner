@@ -18,31 +18,46 @@ public class RocketScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-            blowupList.Clear();
-            foreach (GameObject element in GameObject.FindGameObjectsWithTag("Obstacle"))
+        StartCoroutine(boom(other));
+    }
+
+    IEnumerator boom(Collider other)
+    {
+
+        GetComponent<AudioSource>().Play();
+
+        blowupList.Clear();
+        foreach (GameObject element in GameObject.FindGameObjectsWithTag("Obstacle"))
+        {
+            if (Vector3.Distance(new Vector3(this.transform.position.x, 0, 0), element.transform.position) <= explosionRange)
             {
-                if (Vector3.Distance(new Vector3(this.transform.position.x, 0, 0), element.transform.position) <= explosionRange)
-                {
-                    blowupList.Add(element.GetComponent<Rigidbody>());
-                }
+                blowupList.Add(element.GetComponent<Rigidbody>());
             }
+        }
 
-            explosionRef = GameObject.FindGameObjectWithTag("ExpRef").transform;
+        explosionRef = GameObject.FindGameObjectWithTag("ExpRef").transform;
 
-            var explosion = Object.Instantiate(explosionEff, new Vector3(this.transform.position.x, 0, 0), explosionRef.rotation);
+        var explosion = Object.Instantiate(explosionEff, new Vector3(this.transform.position.x, 0, 0), explosionRef.rotation);
 
 
-            for (int i = 0; i < blowupList.Count; i++)
-            {
-                //blowupElements[i].freezeRotation = false;
-                blowupList[i].constraints = RigidbodyConstraints.None;
+        for (int i = 0; i < blowupList.Count; i++)
+        {
+            //blowupElements[i].freezeRotation = false;
+            blowupList[i].constraints = RigidbodyConstraints.None;
 
-                blowupList[i].AddExplosionForce(explosionStrength, new Vector3(this.transform.position.x, 0, 0), explosionRange);
+            blowupList[i].AddExplosionForce(explosionStrength, new Vector3(this.transform.position.x, 0, 0), explosionRange);
 
-                blowupList[i].useGravity = true;
+            blowupList[i].useGravity = true;
 
-                blowupList[i].GetComponent<CarScript>().SelfDestroy();
-            }
+            blowupList[i].GetComponent<CarScript>().SelfDestroy();
+        }
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        yield return new WaitForSeconds(2);
 
         Object.Destroy(this.gameObject);
     }

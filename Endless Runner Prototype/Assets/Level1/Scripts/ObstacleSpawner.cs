@@ -65,15 +65,15 @@ public class ObstacleSpawner : MonoBehaviour
         {
             Spawn();
         }
-        else if (toSpawn > 30 && toSpawn <= 60)
+        else if (toSpawn > 75 && toSpawn <= 85)
         {
             Spawn(2);
         }
-        else if (toSpawn > 60 && toSpawn < 85)
+        else if (toSpawn > 85 && toSpawn <= 95)
         {
             Spawn(3);
         }
-        else if (toSpawn > 85)
+        else if (toSpawn > 95)
         {
             Spawn(4);
         }
@@ -222,6 +222,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     #endregion
 
+    #region SPAWN POWERUP CODE
     private void CallSpawnPowerUp()
     {
         bool free = false;
@@ -266,7 +267,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnPowerupAtA(int pos)
     {
-        Object.Instantiate(powerupPool[Random.Range(0, powerupPool.Length)], SpawnPointsA[pos].position, referenceObject.transform.rotation);  //OUT OF RANGE EXCEPTION ???????????????????????????
+        Object.Instantiate(powerupPool[Random.Range(0, powerupPool.Length)], SpawnPointsA[pos].position, referenceObject.transform.rotation);  //OUT OF RANGE EXCEPTION IS OK. It's only given by first tiles because of obj spawning disabled.
         Debug.Log("at " + pos);
     }
 
@@ -274,6 +275,8 @@ public class ObstacleSpawner : MonoBehaviour
     {
         Object.Instantiate(powerupPool[Random.Range(0, powerupPool.Length)], SpawnPointsB[pos].position, referenceObject.transform.rotation);
     }
+
+    #endregion
 
     public void Pause()
     {

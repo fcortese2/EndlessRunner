@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float currentZPos;
 
     private float startSpeed;
+    public float Speed { get { return speed; } set { speed = value; } }
     // Start is called before the first frame update
     void Start()
     {

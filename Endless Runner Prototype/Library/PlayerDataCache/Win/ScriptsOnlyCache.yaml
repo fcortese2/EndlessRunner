@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AudioManager
     - BossAI
     - BossManager
     - BossSwitch
@@ -28,10 +29,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -46,7 +45,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/Level1.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -73,6 +72,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 91
@@ -94,55 +97,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11414}
     - Class: 114
-      Script: {instanceID: 11676}
+      Script: {instanceID: 11680}
     - Class: 114
-      Script: {instanceID: 11846}
+      Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 11960}
+      Script: {instanceID: 11966}
     - Class: 114
-      Script: {instanceID: 12024}
+      Script: {instanceID: 12030}
     - Class: 114
-      Script: {instanceID: 12026}
+      Script: {instanceID: 12032}
     - Class: 114
-      Script: {instanceID: 12054}
+      Script: {instanceID: 12064}
     - Class: 114
-      Script: {instanceID: 12104}
+      Script: {instanceID: 12114}
     - Class: 114
-      Script: {instanceID: 12192}
+      Script: {instanceID: 12202}
     - Class: 114
-      Script: {instanceID: 12308}
+      Script: {instanceID: 12318}
     - Class: 114
-      Script: {instanceID: 12422}
+      Script: {instanceID: 12432}
     - Class: 114
-      Script: {instanceID: 12442}
+      Script: {instanceID: 12452}
     - Class: 114
-      Script: {instanceID: 12444}
+      Script: {instanceID: 12454}
     - Class: 114
-      Script: {instanceID: 12496}
+      Script: {instanceID: 12506}
     - Class: 114
-      Script: {instanceID: 12522}
+      Script: {instanceID: 12532}
     - Class: 114
-      Script: {instanceID: 12642}
+      Script: {instanceID: 12652}
     - Class: 114
-      Script: {instanceID: 12664}
+      Script: {instanceID: 12674}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 12798}
+      Script: {instanceID: 12808}
     - Class: 114
-      Script: {instanceID: 12902}
+      Script: {instanceID: 12912}
     - Class: 114
-      Script: {instanceID: 12914}
+      Script: {instanceID: 12924}
     - Class: 114
-      Script: {instanceID: 13188}
+      Script: {instanceID: 13198}
     - Class: 114
-      Script: {instanceID: 13196}
+      Script: {instanceID: 13206}
     - Class: 114
-      Script: {instanceID: 13268}
+      Script: {instanceID: 13282}
     - Class: 114
-      Script: {instanceID: 13298}
+      Script: {instanceID: 13312}
     - Class: 114
-      Script: {instanceID: 13356}
+      Script: {instanceID: 13370}
+    - Class: 114
+      Script: {instanceID: 829894}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -332,6 +337,12 @@ ScriptsOnlyBuild:
     className: LayoutElement
   - hash:
       serializedVersion: 2
+      Hash: 7b58da42ea960ca7ddaf830d9441ff9f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: JsonNetSample
+  - hash:
+      serializedVersion: 2
       Hash: cbae2ed2d2d53cc8f539e7cb4f29bc1f
     assemblyName: Cinemachine.dll
     namespaceName: 
@@ -354,6 +365,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: AspectRatioFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 0413344b9046a88defc43257229141b4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: spaceWorldSpawner
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -402,6 +419,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine.PostFX
     className: CinemachinePostProcessing
+  - hash:
+      serializedVersion: 2
+      Hash: 567aa62515eb0ab8ee6d836614fb6f4a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpaceshipMovement
   - hash:
       serializedVersion: 2
       Hash: 8963690ef6f6b05ce03bfd8b5c26e20c
@@ -476,6 +499,12 @@ ScriptsOnlyBuild:
     className: WorldSpawnManager
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: movetomouse
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -486,6 +515,12 @@ ScriptsOnlyBuild:
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
     className: CinemachineOrbitalTransposer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CrosshairScript
   - hash:
       serializedVersion: 2
       Hash: c88b87e7878ec75ab35a37faf21c5df2
@@ -578,7 +613,7 @@ ScriptsOnlyBuild:
     className: CinemachineTargetGroup
   - hash:
       serializedVersion: 2
-      Hash: 109cd519cfa77dd6f22756b14c2cd19b
+      Hash: 09cfe542555b898597763fcb38de0557
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GM_MANAGER
@@ -704,7 +739,7 @@ ScriptsOnlyBuild:
     className: CinemachineTouchInputMapper
   - hash:
       serializedVersion: 2
-      Hash: 398fce946c1cc7322a3f4880766cdb7c
+      Hash: 90d771677341fc309ad3eff8aff7e22c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BossManager
@@ -824,7 +859,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 88373c3b9e863968ce5aeb6f198cb013
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DeathManager
@@ -840,6 +875,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayModeRunnerCallback
+  - hash:
+      serializedVersion: 2
+      Hash: 611d78e29ab3e8255579100906f09399
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Space_Movement
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -960,7 +1001,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 10828be1d1ad8384fa82ab95e2a4d10e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioManager
   platform: 5
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
-  playerPath: D:/UnityProjects/Endless Runner Prototype/Builds/2/Endless Runner Prototype.exe
+  - Assets/Scenes/Level1.unity
+  playerPath: D:/VEGA/Y2/GADE/Task1/Build/Endless Runner Prototype.exe

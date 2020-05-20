@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GM_MANAGER : MonoBehaviour
 {
+    [Range(1,3)]public int currentLevel;
     [Header("Score Management References")]
     public Transform playerModel;
     public Text scoreDisplayer;
@@ -15,7 +16,7 @@ public class GM_MANAGER : MonoBehaviour
     private int coinCount = 0;
 
 
-    private int score;
+    public int score;
     private int BossTriggerScore;
     //Getters and Setters
     //public int CoinCount { get { return coinCount; } set { coinCount = value; } }

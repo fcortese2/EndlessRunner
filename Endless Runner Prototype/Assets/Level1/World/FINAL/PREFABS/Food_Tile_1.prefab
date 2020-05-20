@@ -15670,6 +15670,7 @@ MonoBehaviour:
   powerupPool:
   - {fileID: 1348823261021625740, guid: ee9ffd506d532bc43831bf3530eded3b, type: 3}
   - {fileID: 3859331678765833783, guid: 0d247adff674d604d83324c02333ebc6, type: 3}
+  - {fileID: 3563043548865587578, guid: 1d92f62d46ff9bc479a3812bd4f8a01d, type: 3}
 --- !u!1 &3442563952354326082
 GameObject:
   m_ObjectHideFlags: 0

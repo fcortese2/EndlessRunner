@@ -48,12 +48,21 @@ public class Dropdown : MonoBehaviour
         {
             gm.GetComponent<GM_MANAGER>().doubleCoin = true;
             Invoke("returnNormal", coinEffectDuration);
+            transform.GetChild(0).gameObject.SetActive(false);
+            GetComponent<AudioSource>().Play();
         }
     }
 
-    void returnNormal()
+    IEnumerator waitDestroy(float t)
+    {
+        yield return new WaitForSeconds(t);
+        Object.Destroy(this.gameObject);
+    }
+
+    void returnNormal() 
     {
         gm.GetComponent<GM_MANAGER>().doubleCoin = false;
+        StartCoroutine(waitDestroy(.1f));
     }
 
     Transform explosionRef;

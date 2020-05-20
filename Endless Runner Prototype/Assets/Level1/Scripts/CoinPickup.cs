@@ -12,6 +12,7 @@ public class CoinPickup : MonoBehaviour
     private GM_MANAGER manager;
     private Vector3 offset;
 
+    private bool used = false;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -30,16 +31,28 @@ public class CoinPickup : MonoBehaviour
                 Object.Destroy(this.gameObject);
             }
         }*/
-        if (Vector3.Distance(this.transform.position+offset, player.position) <= pickupSensitivity)
+        if (Vector3.Distance(this.transform.position+offset, player.position) <= pickupSensitivity  && !used)
         {
-            manager.AddCoin();
-            Object.Destroy(this.gameObject);
+            used = true;
+            GetComponent<AudioSource>().time = .18f;
+            GetComponent<AudioSource>().Play();
+            StartCoroutine(AddCoin());
         }
 
         if (Vector3.Distance(this.transform.position, player.position) > 150f )
         {
             Object.Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator AddCoin()
+    {
+        Debug.Log("+coin");
+        manager.AddCoin();
+        transform.GetChild(0).gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
+        Debug.Log("despawn");
+        Object.Destroy(this.gameObject);
     }
 
     private void OnDrawGizmos()
